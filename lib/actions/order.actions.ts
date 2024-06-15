@@ -70,7 +70,6 @@ export async function getOrdersByEvent({
   searchString,
   eventId,
 }: GetOrdersByEventParams) {
-  console.log("hit");
   try {
     await connectToDatabase();
 
