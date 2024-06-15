@@ -5,6 +5,7 @@ import Collection from "@/components/shared/Collection";
 import { getAllEvents } from "@/lib/actions/event.actions";
 import Search from "@/components/shared/Search";
 import { SearchParamProps } from "@/types";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 
 export default async function Home({ searchParams }: SearchParamProps) {
   const page = Number(searchParams?.page) || 1;
@@ -49,9 +50,9 @@ export default async function Home({ searchParams }: SearchParamProps) {
         <h2 className="h2-bold ">
           Trusted by <br /> Thousands of Events
         </h2>
-        <Search />
         <div className="flex w-full flex-col gap-5 md:flex-row">
-          Search CategoryFilter
+          <Search />
+          <CategoryFilter />
         </div>
 
         <Collection
@@ -60,8 +61,8 @@ export default async function Home({ searchParams }: SearchParamProps) {
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={6}
-          page={1}
-          totalPages={2}
+          page={page}
+          totalPages={events?.totalPages}
         ></Collection>
       </section>
     </>
