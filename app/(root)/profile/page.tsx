@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Collection from "@/components/shared/Collection";
 import { Button } from "@/components/ui/button";
