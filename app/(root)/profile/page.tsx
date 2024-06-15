@@ -12,12 +12,12 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
   const { sessionClaims } = auth();
   const userId = sessionClaims?.userId as string;
 
-  const ordersPage = Number(searchParams?.orderPage) || 1;
-  const eventsPage = Number(searchParams?.eventsPage) || 1;
+  // const ordersPage = Number(searchParams?.orderPage) || 1;
+  // const eventsPage = Number(searchParams?.eventsPage) || 1;
 
-  const orders = await getOrdersByUser({ userId, page: ordersPage });
+  const orders = await getOrdersByUser({ userId, page: 1 });
   const orderedEvents = orders?.data.map((order: IOrder) => order.event) || [];
-  const organisedEvents = await getEventsByUser({ userId, page: eventsPage });
+  const organisedEvents = await getEventsByUser({ userId, page: 1 });
 
   return (
     <>
@@ -37,7 +37,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           emptyStateSubtext="No worries - plenty of exciting events to explore!"
           collectionType="My_Tickets"
           limit={3}
-          page={ordersPage}
+          page={1}
           urlParamName="ordersPage"
           totalPages={orders?.totalPages}
         ></Collection>
@@ -59,7 +59,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           emptyStateSubtext="Maybe create some?"
           collectionType="Events_Organised"
           limit={3}
-          page={eventsPage}
+          page={1}
           urlParamName="eventsPage"
           totalPages={organisedEvents?.totalPages}
         ></Collection>
